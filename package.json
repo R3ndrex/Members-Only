@@ -1,0 +1,32 @@
+{
+    "name": "members-only",
+    "version": "1.0.0",
+    "description": "��#\u0000 \u0000M\u0000e\u0000m\u0000b\u0000e\u0000r\u0000s\u0000-\u0000O\u0000n\u0000l\u0000y\u0000\r\u0000 \u0000",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "populate": "node ./db/populatedb.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/R3ndrex/Members-Only.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/R3ndrex/Members-Only/issues"
+    },
+    "homepage": "https://github.com/R3ndrex/Members-Only#readme",
+    "dependencies": {
+        "bcrypt": "^6.0.0",
+        "connect-pg-simple": "^10.0.0",
+        "ejs": "^5.0.1",
+        "express": "^5.2.1",
+        "express-session": "^1.19.0",
+        "express-validator": "^7.3.2",
+        "passport": "^0.7.0",
+        "passport-local": "^1.0.0",
+        "pg": "^8.20.0"
+    }
+}
