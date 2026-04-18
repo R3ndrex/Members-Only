@@ -3,8 +3,38 @@
 *::before {
     box-sizing: border-box;
 }
+
+/* delius-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Delius";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/delius-v21-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+:root {
+    --gray: rgb(143, 142, 142);
+    --brown: rgb(124, 76, 76);
+    --light-brown: rgb(216, 183, 183);
+    --bg: rgb(245, 242, 240);
+    --text: rgb(35, 35, 35);
+    --accent: rgb(168, 104, 92);
+    --accent-soft: rgb(199, 150, 150);
+    --surface: rgb(232, 214, 200);
+    --border: rgb(90, 88, 88);
+    --success: rgb(126, 148, 132);
+    --info: rgb(110, 132, 155);
+    --aside-length: 25%;
+}
+button,
+input {
+    color: var(--text);
+    font-size: large;
+}
 body {
     font-family:
+        Delius,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
@@ -17,4 +47,187 @@ body {
         "Helvetica Neue",
         sans-serif;
     margin: 0;
+    background-color: var(--bg);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: break-word;
+    color: var(--text);
+}
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+button,
+input {
+    font-family: inherit;
+}
+header {
+    text-align: center;
+    border-bottom: 1px solid var(--gray);
+}
+.auth-form {
+    width: min(300px, 80%);
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 0.5rem;
+}
+
+.auth-form button[type="submit"] {
+    margin-top: 1rem;
+}
+.auth-form div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+
+    justify-content: space-between;
+}
+.message-form {
+    border-top: 1px solid var(--gray);
+    padding: 1rem;
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.message-form input[name="description"] {
+    flex: 1;
+}
+.main-aside {
+    border-left: 1px solid var(--brown);
+    background-color: var(--light-brown);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--aside-length);
+    height: 100%;
+    grid-column: 2;
+    grid-row: 1 / -1;
+    font-size: large;
+}
+.main-aside ul {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin-top: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main,
+header {
+    margin-right: var(--aside-length);
+}
+.main-aside a {
+    color: var(--charcoal);
+    text-decoration: none;
+}
+li {
+    list-style-type: none;
+}
+p.no-posts {
+    display: flex;
+    justify-content: center;
+    color: var(--info);
+}
+.main-aside {
+    li {
+        padding: 1rem;
+        margin: 0 1rem;
+    }
+    li.active {
+        border: 1px solid var(--gray);
+        background-color: var(--bg);
+        border-radius: 10px;
+    }
+    ul {
+        height: 100%;
+        margin: 0.5rem 0;
+    }
+    li.logout {
+        border: 1px solid var(--gray);
+        background-color: var(--bg);
+        margin-top: auto;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+}
+input {
+    padding: 0.5rem;
+    border: 1px solid var(--gray);
+    background-color: white;
+    border-radius: 10px;
+}
+button {
+    transition: all 0.25s ease-in-out;
+}
+button:hover {
+    border: 1px solid var(--accent);
+    background-color: var(--accent-soft);
+}
+
+input:hover,
+.main-aside li.logout:hover {
+    border: 1px solid var(--accent);
+    outline: none;
+}
+
+input:focus,
+button:focus {
+    border: 1px solid var(--brown);
+    outline: none;
+}
+
+.main-aside li.active {
+    border: 1px solid var(--brown);
+}
+button {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray);
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.error-list {
+    color: var(--accent);
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        li {
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --aside-length: 35%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    form div {
+        flex-direction: column;
+    }
+    .main-aside {
+        font-size: medium;
+        li {
+            padding: 0.75rem;
+            margin: 0 0.75rem;
+        }
+    }
+    input,
+    button {
+        font-size: medium;
+    }
 }

@@ -1,0 +1,33 @@
+<aside class="main-aside">
+    <ul>
+        <%if(!locals?.currentUser){%>
+        <%if(locals?.active==="login"){%>
+        <li class="active"><a href="/auth/login">login</a></li>
+            <%}else{%>
+                <li><a href="/auth/login">login</a></li>
+            <%}%>
+        <%if(locals?.active==="register"){%>
+            <li class="active"><a href="/auth/register">register</a></li>
+        <%}else{%>
+            <li><a href="/auth/register">register</a></li>
+            
+        <%}if(locals?.active==="posts"){%>
+            <li class="active"><a href="/posts">posts</a></li>
+        <%}else{%>
+            <li><a href="/posts">posts</a></li>
+        <%}%>
+        <%}else{%>
+        <li><%=locals?.currentUser.email%></li> 
+        <%if(locals?.active==="posts"){%>
+                    <li class="active"><a href="/posts">posts</a></li>
+                <%}else{%>
+                    <li><a href="/posts">posts</a></li>
+                <%}%>
+
+            <li class="logout"> <a href="/auth/logout">logout</a> </li>
+
+        <%}%>
+
+
+    </ul>
+</aside>

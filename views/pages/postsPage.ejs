@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head",{title:"Main"})%>
+    <body>
+        <header><h1> All Posts</h1></header>
+        <main>
+            <%if(locals?.posts){%>
+                <ul>
+                    <%locals?.posts.forEach((post)=>{%>
+                        <li>
+                            <h4><%=post.title%></h4>
+                            <p><%=post.message%></p>
+                        </li>
+                    <%})%>
+                </ul>
+            <%}else{%>
+                <p class="no-posts">No posts found... <%}%>
+            <form class="message-form">
+                <input type="text" name="title" id="title" placeholder="title">
+                <input type="text" name="description" id="description" placeholder="description">
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+    <%- include("../partials/aside",{active:"posts"})%>
+    </body>
+</html>
