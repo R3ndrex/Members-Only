@@ -127,7 +127,7 @@ header {
     margin-right: var(--aside-length);
 }
 .main-aside a {
-    color: var(--charcoal);
+    color: var(--text);
     text-decoration: none;
 }
 li {
