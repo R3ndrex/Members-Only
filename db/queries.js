@@ -20,7 +20,14 @@ async function createPost({ title, description, authorId }) {
 }
 async function getAllPosts() {
     const { rows } = await db.query(`SELECT * FROM posts`);
-    return rows;
+    const result = await Promise.all(
+        rows.map(async (row) => {
+            const author = await getUserById(row.authorid);
+            const fullname = `${author.firstname} ${author.lastname}`;
+            return { ...row, fullname: fullname };
+        }),
+    );
+    return result;
 }
 async function createUser({ lastName, firstName, email, password }) {
     const { rows } = await db.query(
