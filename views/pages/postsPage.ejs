@@ -8,17 +8,19 @@
                 <ul class="posts">
                     <%locals?.posts.forEach((post)=>{%>
                         <li class="post">
-                            <h4><%=post.title%></h4>
-                            <span><%=post.createdAt%></span>
+                            <div class="post-title"><h4><%=post.title%></h4> <span><%=post.createdat.toLocaleString()%></span></div>
                             <p><%=post.description%></p>
+                            <%if(locals?.currentUser){%>
+                            <p><%=post.fullname%></p>
+                                <%}%>
                         </li>
                     <%})%>
                 </ul>
             <%}else{%>
                 <p class="no-posts">No posts found... <%}%>
             <form action="/posts/create" method="post" class="message-form">
-                <input type="text" name="title" id="title" placeholder="title">
-                <input type="text" name="description" id="description" placeholder="description">
+                <input type="text" value="<%=locals?.title%>" name="title" id="title" placeholder="title">
+                <input type="text" value="<%=locals?.description%>" name="description" id="description" placeholder="description">
                 <button type="submit">Submit</button>
             </form>
         </main>
