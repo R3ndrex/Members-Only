@@ -12,7 +12,16 @@ async function findUserByEmail(email) {
     );
     return rows[0];
 }
-
+async function createPost({ title, description, authorId }) {
+    await db.query(
+        `INSERT INTO posts(title,description,createdAt,authorId) VALUES($1,$2,NOW(),$3)`,
+        [title, description, authorId],
+    );
+}
+async function getAllPosts() {
+    const { rows } = await db.query(`SELECT * FROM posts`);
+    return rows;
+}
 async function createUser({ lastName, firstName, email, password }) {
     const { rows } = await db.query(
         `INSERT INTO users(firstName,lastName,email,password,status) VALUES($1,$2,$3,$4,'member') RETURNING id, firstName, lastName, email, status`,
@@ -24,4 +33,6 @@ module.exports = {
     getUserById,
     createUser,
     findUserByEmail,
+    createPost,
+    getAllPosts,
 };
