@@ -9,7 +9,6 @@ const creatingValidator = [
 module.exports = {
     getPostsPage: async (req, res) => {
         const posts = await getAllPosts();
-        console.log(posts);
         res.render("pages/postsPage", { posts });
     },
     createPost: [
@@ -17,14 +16,19 @@ module.exports = {
         async (req, res) => {
             const result = validationResult(req);
             if (!result.isEmpty()) {
-                res.redirect("/posts");
+                const { title, description } = req.body;
+                const posts = await getAllPosts();
+                return res.render("pages/postsPage", {
+                    title,
+                    description,
+                    posts,
+                });
             }
             const { title, description } = matchedData(req);
             const authorId = req.user.id;
-            console.log(authorId);
             await createPost({ title, description, authorId });
 
-            res.redirect("/posts");
+            return res.redirect("/posts");
         },
     ],
     deletePost: async (req, res) => {},
