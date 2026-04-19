@@ -26,8 +26,8 @@ CREATE TABLE users(
 
 CREATE TABLE posts(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    message TEXT,
     title VARCHAR(255),
+    description TEXT,
     createdAt TIMESTAMP,
     authorId INTEGER REFERENCES users(id)
 );
