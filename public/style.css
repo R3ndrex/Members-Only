@@ -80,6 +80,7 @@ header {
 .posts {
     overflow: auto;
     scrollbar-color: var(--accent-soft) transparent;
+    word-break: break-all;
 }
 .post {
     background-color: var(--light-brown);
@@ -90,6 +91,11 @@ header {
     h4 {
         color: var(--accent);
     }
+}
+.post-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 .auth-form button[type="submit"] {
     margin-top: 1rem;
@@ -229,6 +235,15 @@ button {
     }
 }
 
+@media screen and (max-width: 750px) {
+    .message-form {
+        flex-direction: column;
+        button[type="submit"] {
+            align-self: center;
+        }
+    }
+}
+
 @media screen and (max-width: 650px) {
     form div {
         flex-direction: column;
@@ -240,6 +255,7 @@ button {
             margin: 0 0.75rem;
         }
     }
+
     input,
     button {
         font-size: medium;
