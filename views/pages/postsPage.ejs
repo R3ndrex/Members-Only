@@ -5,17 +5,18 @@
         <header><h1> All Posts</h1></header>
         <main>
             <%if(locals?.posts){%>
-                <ul>
+                <ul class="posts">
                     <%locals?.posts.forEach((post)=>{%>
-                        <li>
+                        <li class="post">
                             <h4><%=post.title%></h4>
-                            <p><%=post.message%></p>
+                            <span><%=post.createdAt%></span>
+                            <p><%=post.description%></p>
                         </li>
                     <%})%>
                 </ul>
             <%}else{%>
                 <p class="no-posts">No posts found... <%}%>
-            <form class="message-form">
+            <form action="/posts/create" method="post" class="message-form">
                 <input type="text" name="title" id="title" placeholder="title">
                 <input type="text" name="description" id="description" placeholder="description">
                 <button type="submit">Submit</button>
