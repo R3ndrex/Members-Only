@@ -17,13 +17,18 @@
             <li><a href="/posts">posts</a></li>
         <%}%>
         <%}else{%>
-        <li><%=locals?.currentUser.email%></li> 
-        <%if(locals?.active==="posts"){%>
+            <li><%=locals?.currentUser.email%></li> 
+                <%if(locals?.active==="membership"){%>
+                    <li class="active"><a href="/membership">membership</a></li>
+                <%}else{%>
+                    <li><a href="/membership">membership</a></li>
+                <%}%>
+                <%if(locals?.active==="posts"){%>
                     <li class="active"><a href="/posts">posts</a></li>
                 <%}else{%>
                     <li><a href="/posts">posts</a></li>
                 <%}%>
-
+                
             <li class="logout"> <a href="/auth/logout">logout</a> </li>
 
         <%}%>

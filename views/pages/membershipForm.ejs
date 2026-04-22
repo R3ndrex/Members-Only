@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head",{title:"Login"})%>
+    <body>
+        <header><h1>Membership Page</h1>
+        </header>
+        <main>
+        <form class="auth-form" action="/membership/get-access" method="post">
+            <div>
+                <label for="code">Secret Code</label>
+            <input value="<%=locals?.code%>" placeholder="Enter Member Code" type="password" name="code" id="code" />
+        </div>
+        <button type="submit">Submit</button>
+            <%- include("../partials/errors",{errors:locals?.errors})%>
+        </form>
+    </main>
+        <%- include("../partials/aside",{active:"membership"})%>
+    </body>
+</html>

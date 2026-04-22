@@ -7,6 +7,7 @@ const pool = require("./db/pool");
 const passport = require("passport");
 const authRoute = require("./routes/authRoute");
 const postsRoute = require("./routes/postsRoute");
+const membershipRoute = require("./routes/membershipRoute");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -37,6 +38,7 @@ app.use((req, res, next) => {
 });
 app.use("/auth", authRoute);
 app.use("/posts", postsRoute);
+app.use("/membership", membershipRoute);
 
 app.use((req, res) => {
     return res.status(404).send("404 page not found");
