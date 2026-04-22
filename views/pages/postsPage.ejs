@@ -9,7 +9,16 @@
                     <%locals?.posts.forEach((post)=>{%>
                         <li class="post">
                             <%if(locals.currentUser){%>
-                                <div class="post-title"><h4><%=post.title%></h4> <span><%=post.createdat.toLocaleString()%></span> <div><%=post.fullname%></div></div>
+                                <div class="post-title">
+                                    <h4><%=post.title%></h4> 
+                                    <span><%=post.createdat.toLocaleString()%></span> 
+                                    <div><%=post.fullname%></div> 
+                                    <%if(locals?.currentUser?.isadmin){%>
+                                        <a href="/posts/delete/<%= post?.id %>">
+                                            <img width="24px" src="/delete-icon.png" alt="trashbin icon">
+                                        </a> 
+                                    <%}%>
+                                </div>
                             <%}else{%>
                                 <div class="post-title"><h4><%=post.title%></h4></div>
                             <%}%>
@@ -19,7 +28,7 @@
                 </ul>
             <%}else{%>
                 <p class="no-posts">No posts found... <%}%>
-                <%if(locals?.currentUser?.status==='member'){%>
+                <%if(locals?.currentUser?.status==='member'||locals?.currentUser?.isadmin){%>
             <form action="/posts/create" method="post" class="message-form">
                 <input type="text" value="<%=locals?.title%>" name="title" id="title" placeholder="title">
                 <input type="text" value="<%=locals?.description%>" name="description" id="description" placeholder="description">
