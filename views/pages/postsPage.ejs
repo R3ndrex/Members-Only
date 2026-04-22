@@ -8,21 +8,24 @@
                 <ul class="posts">
                     <%locals?.posts.forEach((post)=>{%>
                         <li class="post">
-                            <div class="post-title"><h4><%=post.title%></h4> <span><%=post.createdat.toLocaleString()%></span></div>
+                            <%if(locals.currentUser){%>
+                                <div class="post-title"><h4><%=post.title%></h4> <span><%=post.createdat.toLocaleString()%></span> <div><%=post.fullname%></div></div>
+                            <%}else{%>
+                                <div class="post-title"><h4><%=post.title%></h4></div>
+                            <%}%>
                             <p><%=post.description%></p>
-                            <%if(locals?.currentUser){%>
-                            <p><%=post.fullname%></p>
-                                <%}%>
                         </li>
                     <%})%>
                 </ul>
             <%}else{%>
                 <p class="no-posts">No posts found... <%}%>
+                <%if(locals?.currentUser?.status==='member'){%>
             <form action="/posts/create" method="post" class="message-form">
                 <input type="text" value="<%=locals?.title%>" name="title" id="title" placeholder="title">
                 <input type="text" value="<%=locals?.description%>" name="description" id="description" placeholder="description">
                 <button type="submit">Submit</button>
             </form>
+            <%}%>
         </main>
     <%- include("../partials/aside",{active:"posts"})%>
     </body>
