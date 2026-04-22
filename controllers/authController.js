@@ -45,10 +45,9 @@ const registerValidator = [
         ),
     body("confirmPassword")
         .trim()
-        .custom((value, { req }) => {
-            return req.body.password === value;
-        })
+        .custom((value, { req }) => req.body.password === value)
         .withMessage("Passwords must be same"),
+    body("isAdmin", "Must be a boolean value").toBoolean(),
 ];
 
 const loginValidator = [
@@ -124,13 +123,15 @@ module.exports = {
                 });
             }
 
-            const { lastName, firstName, email, password } = matchedData(req);
+            const { lastName, firstName, email, password, isAdmin } =
+                matchedData(req);
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = await createUser({
                 lastName,
                 firstName,
                 email,
                 password: hashedPassword,
+                isAdmin,
             });
             req.logIn(user, (error) => {
                 if (error) {
