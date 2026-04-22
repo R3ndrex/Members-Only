@@ -3,7 +3,12 @@ const { createPost, getAllPosts } = require("../db/queries");
 
 const creatingValidator = [
     body("title").trim().notEmpty(),
-    body("description").trim().notEmpty(),
+    body("description")
+        .trim()
+        .notEmpty()
+        .custom((value, { req }) => {
+            return req.user.status === "member";
+        }),
 ];
 
 module.exports = {
