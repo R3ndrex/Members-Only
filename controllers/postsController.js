@@ -7,7 +7,7 @@ const creatingValidator = [
         .trim()
         .notEmpty()
         .custom((value, { req }) => {
-            return req.user.status === "member";
+            return req.user.status === "member" || req.user.isadmin;
         }),
 ];
 
