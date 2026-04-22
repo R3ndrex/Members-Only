@@ -19,6 +19,8 @@
                 name="confirmPassword"
                 id="confirmPassword"
             /></div>
+            <div><label for="isAdmin">Are you an admin?</label>
+            <input type="checkbox" name="isAdmin" id="isAdmin"></div>
             <button type="submit">Submit</button>
             <%- include("../partials/errors",{errors:locals?.errors})%>
         </form></main>
