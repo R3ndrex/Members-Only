@@ -21,7 +21,8 @@ CREATE TABLE users(
     lastName VARCHAR(255),
     email VARCHAR(255),
     password TEXT,
-    status VARCHAR(255)
+    status VARCHAR(255),
+    isAdmin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE posts(
