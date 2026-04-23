@@ -39,7 +39,6 @@ module.exports = {
     deletePost: async (req, res) => {
         const { postId } = req.params;
         await deletePost(postId);
-        const posts = await getAllPosts();
         return res.redirect("/posts");
     },
 };
