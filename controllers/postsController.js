@@ -1,5 +1,5 @@
 const { validationResult, body, matchedData } = require("express-validator");
-const { createPost, getAllPosts } = require("../db/queries");
+const { createPost, getAllPosts, deletePost } = require("../db/queries");
 
 const creatingValidator = [
     body("title").trim().notEmpty(),
@@ -36,5 +36,12 @@ module.exports = {
             return res.redirect("/posts");
         },
     ],
-    deletePost: async (req, res) => {},
+    deletePost: async (req, res) => {
+        const { postId } = req.params;
+        await deletePost(postId);
+        const posts = await getAllPosts();
+        return res.render("pages/postsPage", {
+            posts,
+        });
+    },
 };
