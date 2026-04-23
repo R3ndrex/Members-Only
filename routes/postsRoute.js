@@ -5,5 +5,5 @@ const postsRoute = Router();
 
 postsRoute.get("/", postsController.getPostsPage);
 postsRoute.post("/create", postsController.createPost);
-postsRoute.get("/delete/:postId", postsController.deletePost);
+postsRoute.post("/delete/:postId", postsController.deletePost);
 module.exports = postsRoute;

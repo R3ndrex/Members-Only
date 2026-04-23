@@ -14,9 +14,12 @@
                                     <span><%=post.createdat.toLocaleString()%></span> 
                                     <div><%=post.fullname%></div> 
                                     <%if(locals?.currentUser?.isadmin){%>
-                                        <a href="/posts/delete/<%= post?.id %>">
-                                            <img width="24px" src="/delete-icon.png" alt="trashbin icon">
-                                        </a> 
+                                        <form action="/posts/delete/<%= post?.id %>" method="post">
+                                            <button> 
+                                                <img width="24px" src="/delete-icon.png" alt="trashbin icon">
+                                            </button> 
+                                        </form>
+                                        
                                     <%}%>
                                 </div>
                             <%}else{%>
