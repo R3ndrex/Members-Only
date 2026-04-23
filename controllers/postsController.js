@@ -35,13 +35,11 @@ module.exports = {
 
             return res.redirect("/posts");
         },
-    ],
+    ], /// problem, doesnt save input fields(title,description) when reloaded
     deletePost: async (req, res) => {
         const { postId } = req.params;
         await deletePost(postId);
         const posts = await getAllPosts();
-        return res.render("pages/postsPage", {
-            posts,
-        });
+        return res.redirect("/posts");
     },
 };
