@@ -20,7 +20,6 @@ async function giveMembership(userId) {
         [userId],
     );
 }
-
 async function createPost({ title, description, authorId }) {
     await db.query(
         `INSERT INTO posts(title,description,createdAt,authorId) VALUES($1,$2,NOW(),$3)`,
@@ -28,6 +27,7 @@ async function createPost({ title, description, authorId }) {
     );
 }
 async function getAllPosts() {
+    // change to use joins
     const { rows } = await db.query(`SELECT * FROM posts`);
     const result = await Promise.all(
         rows.map(async (row) => {
@@ -38,10 +38,13 @@ async function getAllPosts() {
     );
     return result;
 }
-async function createUser({ lastName, firstName, email, password }) {
+async function deletePost(postId) {
+    await db.query(`DELETE FROM posts WHERE posts.id=$1`, [postId]);
+}
+async function createUser({ lastName, firstName, email, password, isAdmin }) {
     const { rows } = await db.query(
-        `INSERT INTO users(firstName,lastName,email,password,status) VALUES($1,$2,$3,$4,'user') RETURNING id, firstName, lastName, email, status`,
-        [firstName, lastName, email, password],
+        `INSERT INTO users(firstName,lastName,email,password,status,isAdmin) VALUES($1,$2,$3,$4,'user',$5) RETURNING id, firstName, lastName, email, status`,
+        [firstName, lastName, email, password, isAdmin],
     );
     return rows[0];
 }
@@ -52,4 +55,5 @@ module.exports = {
     createPost,
     giveMembership,
     getAllPosts,
+    deletePost,
 };
