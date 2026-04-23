@@ -27,16 +27,11 @@ async function createPost({ title, description, authorId }) {
     );
 }
 async function getAllPosts() {
-    // change to use joins
-    const { rows } = await db.query(`SELECT * FROM posts`);
-    const result = await Promise.all(
-        rows.map(async (row) => {
-            const author = await getUserById(row.authorid);
-            const fullname = `${author.firstname} ${author.lastname}`;
-            return { ...row, fullname: fullname };
-        }),
-    );
-    return result;
+    const { rows } =
+        await db.query(`SELECT posts.id,posts.title,posts.description,posts.createdat,CONCAT(users.firstname,' ', users.lastname) AS fullname FROM posts
+        JOIN users ON users.id=posts.authorid
+        `);
+    return rows;
 }
 async function deletePost(postId) {
     await db.query(`DELETE FROM posts WHERE posts.id=$1`, [postId]);
