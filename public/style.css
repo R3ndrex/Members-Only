@@ -182,6 +182,9 @@ p.no-posts {
         pointer-events: none;
         cursor: default;
     }
+    nav {
+        height: 100%;
+    }
     ul {
         height: 100%;
         margin: 0.5rem 0;
