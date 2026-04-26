@@ -6,22 +6,26 @@
         <main>
             <%if(locals?.posts){%>
                 <ul class="posts">
-                    <%locals?.posts.forEach((post)=>{%>
+                    <%locals?.posts.forEach((post,index)=>{%>
+                        <%if((posts[index-1]&& posts[index-1].createdat.toLocaleDateString()!==post.createdat.toLocaleDateString())||index===0){%>
+                            <div class="date"><%= post.createdat.toLocaleDateString()%> </div>
+                        <%}%>
                         <li class="post">
                             <%if(locals.currentUser){%>
                                 <div class="post-title">
                                     <h4><%=post.title%></h4> 
-                                    <span><%=post.createdat.toLocaleString()%></span> 
-                                    <div><%=post.fullname%></div> 
+                                    <span>
+                                        <%= post.createdat.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>
+                                    </span>
                                     <%if(locals?.currentUser?.isadmin){%>
                                         <form action="/posts/delete/<%= post?.id %>" method="post">
                                             <button> 
                                                 <img width="24px" src="/delete-icon.png" alt="trashbin icon">
                                             </button> 
-                                        </form>
-                                        
+                                        </form>                                        
                                     <%}%>
                                 </div>
+                                <div class="author">By <%=post.fullname%></div> 
                             <%}else{%>
                                 <div class="post-title"><h4><%=post.title%></h4></div>
                             <%}%>

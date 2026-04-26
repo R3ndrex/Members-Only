@@ -82,21 +82,33 @@ header {
     scrollbar-color: var(--accent-soft) transparent;
     word-break: break-all;
 }
+.posts .date {
+    text-align: center;
+}
 .post {
     background-color: var(--light-brown);
+    display: flex;
+    flex-direction: column;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     margin: 0.5rem;
     width: fit-content;
     h4 {
         color: var(--accent);
+        margin: 0;
     }
 }
 .post-title {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
+    gap: 0 1rem;
 }
+.post .author {
+    order: 1;
+    text-align: end;
+}
+
 .auth-form button[type="submit"] {
     margin-top: 1rem;
 }
@@ -234,6 +246,13 @@ button {
 @media screen and (max-width: 600px) {
     :root {
         --aside-length: 35%;
+    }
+    .post-tile {
+        display: grid;
+        grid-template-columns: fit-content min-content;
+    }
+    .post-title span {
+        grid-template-rows: 1;
     }
 }
 
