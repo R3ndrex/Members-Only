@@ -10,7 +10,6 @@ const creatingValidator = [
             return req.user.status === "member" || req.user.isadmin;
         }),
 ];
-
 module.exports = {
     getPostsPage: async (req, res) => {
         const posts = await getAllPosts();
@@ -37,8 +36,12 @@ module.exports = {
         },
     ], /// problem, doesnt save input fields(title,description) when reloaded
     deletePost: async (req, res) => {
-        const { postId } = req.params;
-        await deletePost(postId);
-        return res.redirect("/posts");
+        if (req.user.isadmin) {
+            const { postId } = req.params;
+            await deletePost(postId);
+            return res.redirect("/posts");
+        } else {
+            res.redirect("/posts");
+        }
     },
 };
