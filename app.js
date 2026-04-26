@@ -8,6 +8,7 @@ const passport = require("passport");
 const authRoute = require("./routes/authRoute");
 const postsRoute = require("./routes/postsRoute");
 const membershipRoute = require("./routes/membershipRoute");
+const compression = require("compression");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -27,7 +28,7 @@ app.use(
         store: new pgSession({ pool, tableName: "session" }),
     }),
 );
-
+app.use(compression());
 require("./passport/initialization");
 
 app.use(passport.session());
