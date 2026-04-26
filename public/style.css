@@ -97,6 +97,9 @@ header {
         color: var(--accent);
         margin: 0;
     }
+    p {
+        margin-top: 0;
+    }
 }
 .post-title {
     display: flex;
