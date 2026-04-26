@@ -1,5 +1,5 @@
 <aside class="main-aside">
-    <ul>
+    <nav><ul>
         <%if(!locals?.currentUser){%>
         <%if(locals?.active==="login"){%>
         <li class="active"><a href="/auth/login">login</a></li>
@@ -34,5 +34,5 @@
         <%}%>
 
 
-    </ul>
+    </ul></nav>
 </aside>
