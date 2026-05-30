@@ -35,7 +35,7 @@ CREATE TABLE posts(
 `;
 async function main() {
     const client = new Client({
-        connectionString: process.env.CONNECTION_STRING,
+        connectionString: process.env.DATABASE_URL,
     });
     await client.connect();
     console.log("started populating...");
